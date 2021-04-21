@@ -1,0 +1,24 @@
+<header>
+  <div class="header-top">
+      <div class="header-nav-title"> <a href="/"> akshat bubna </a> </div>
+      <div class="header-nav-li"> <a href="/about"> about </a> </div>
+      <div class="header-nav-li"> <a href="/index.xml"> rss </a> </div>
+  </div>
+
+  {{ if not .IsHome }}
+
+  <div class="header-top">
+  <div class="header-post-title">
+      {{ .Title }}
+  </div>
+  </div>
+  {{ end }}
+
+  <!-- {{ if ne .IsNode true }}
+       <time datetime="{{ .Date }}">{{ dateFormat "2006-01-02" .Date }}</time>
+       {{ end }} -->
+
+  {{ if and .IsHome (isset .Site.Params "tagline") }}
+  <p>{{ .Site.Params.tagline }}</p>
+  {{ end }}
+</header>

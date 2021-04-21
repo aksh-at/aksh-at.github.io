@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>akshat bubna</title>
+    <link>https://aksh-at.github.io/</link>
+    <description>Recent content on akshat bubna</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 18 Apr 2021 20:20:25 -0700</lastBuildDate><atom:link href="https://aksh-at.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>about</title>
+      <link>https://aksh-at.github.io/about/</link>
+      <pubDate>Thu, 22 Apr 2021 23:14:01 -0700</pubDate>
+      
+      <guid>https://aksh-at.github.io/about/</guid>
+      <description>I work at Scale AI where I do various engineering, product and operations things.
+Recently, I&amp;rsquo;ve been building in Haskell, reading fiction and cultural theory, and attempting to write sentences no one else has written before. A long time ago I did programming competitions.
+Note: my cat is known to post half-baked Nietzschean aphorisms to the Internet; I do not endorse his views in any way.</description>
+    </item>
+    
+    <item>
+      <title>The Academy</title>
+      <link>https://aksh-at.github.io/posts/the-academy/</link>
+      <pubDate>Sun, 18 Apr 2021 20:20:25 -0700</pubDate>
+      
+      <guid>https://aksh-at.github.io/posts/the-academy/</guid>
+      <description>It is a little known fact that the airport of a small, smoky city in Southeast Asia has more licensed therapists in one building than anywhere else in the world—for the transition from the pristine terminal to the poverty outside can be so traumatic, that the city provides free counseling and a shot of morphine for any outsiders spending a night in the city.
+Travelers are required to take the drugs before they leave the airport, but if you desire an undiluted experience of the cough-syrup colored haze, there is a way to opt out.</description>
+    </item>
+    
+  </channel>
+</rss>

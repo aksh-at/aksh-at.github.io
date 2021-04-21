@@ -1,0 +1,18 @@
+{{ partial "top.html" . }}
+
+  <article class="posts">
+
+    {{ range site.RegularPages -}}
+    <section>
+      <ol>
+        <li>
+          <time datetime="{{ .Date.Format "2006-01-02 15:04:05 MST" }}">{{ .Date.Format "Jan 02"}}</time>
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+      </ol>
+    </section>
+    {{ end }}
+
+  </article>
+
+{{ partial "bottom.html" . }}

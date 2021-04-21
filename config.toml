@@ -1,0 +1,16 @@
+baseURL = "https://aksh-at.github.io/"
+languageCode = "en-us"
+title = "akshat bubna"
+publishDir = "docs"
+
+[params]
+  description = "akshat bubna's blog"
+  githubUsername = "aksh-at"
+  twitterUsername = "akshat_b"
+  linkedinUsername = "akshat-bubna-188885103"
+  mainSections = ["post"]
+   authorName = "Akshat Bubna"
+  #tagline = "akshat bubna's blog"
+
+[author]
+  name = "akshat bubna"
