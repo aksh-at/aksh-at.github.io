@@ -4,8 +4,8 @@ date: 2021-04-22T23:14:01-07:00
 type: "page"
 ---
 
-I work at [Scale AI](https://www.linkedin.com/in/akshat-bubna-188885103/) where I do various engineering, product and operations things.
+I'm a software engineer interested in languages (programming and otherwise), philosophy, and fiction (and also the intersection of the 3, which is essentially the collected works of one [Jorge Luis Borges](https://www.amazon.com/Ficciones-Jorge-Luis-Borges/dp/0802130305)).
 
-Recently, I've been building in Haskell, reading fiction and cultural theory, and attempting to write sentences no one else has written before. A long time ago I did programming competitions.
+Currently, I'm working on a startup building serverless data stuff. Before that I was engineer #8 at [Scale AI](http://scale.com/) where I did various engineering, product and operations things. A long time ago I did [programming competitions](http://stats.ioinformatics.org/people/3063).
 
-Note: [my cat is known to post half-baked Nietzschean aphorisms to the Internet](https://www.instagram.com/p/CFYkDzHHrrH/); I do not endorse his views in any way.
+Note: [my cat is known to post half-baked Nietzschean aphorisms to the Internet](https://www.instagram.com/p/CFYkDzHHrrH/); his views are his own.
