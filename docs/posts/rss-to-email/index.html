@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ4HPS1SW4"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+
+     gtag('config', 'G-VZ4HPS1SW4');
+    </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Akshat Bubna">
+    <meta name="generator" content="Hugo 0.91.2" />
+    <title>&#34;Substack for RSS feeds&#34;, built using Clojure and Datomic Ions</title>
+
+    <style>body{visibility:hidden;}</style>
+    <meta name="description" content="">
+    <link rel="canonical" href="https://aksh-at.github.io/posts/rss-to-email/">
+    <link href="" rel="alternate"
+          type="application/rss+xml" title="akshat bubna">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Spectral:300,300i,600,600i|Montserrat" />
+    <link rel="stylesheet" href="https://aksh-at.github.io/css/highlight.css">
+    <link rel="stylesheet" href="https://aksh-at.github.io/css/main.css">
+</head>
+
+
+<body>
+  <main class="container">
+
+    <header>
+  <div class="header-top">
+      <div class="header-nav-title"> <a href="/"> akshat bubna </a> </div>
+      <div class="header-nav-li"> <a href="/about"> about </a> </div>
+      <div class="header-nav-li"> <a href="https://www.rssto.email/?url=https://ab.xyz/index.xml" target="_blank"> subscribe </a> </div>
+  </div>
+
+  
+
+  <div class="header-top">
+  <div class="header-post-title">
+      &#34;Substack for RSS feeds&#34;, built using Clojure and Datomic Ions
+  </div>
+  </div>
+  
+
+  
+
+  
+</header>
+
+
+    <article>
+      <p><a href="https://twitter.com/jasshikoo">Jessica</a> and I spent holiday weekend building <a href="https://rssto.email">https://rssto.email</a>, a feed subscription service written in Clojure and hosted entirely on <a href="https://docs.datomic.com/cloud/ions/ions.html">Datomic Ions</a>.</p>
+<p>The project started out as an Ion I wrote a few weeks ago, because <em>none</em> of the existing ways to subscribe to RSS feeds had the user experience I really wanted. The result was useful enough that we decided to productionize it and share the source (<a href="https://github.com/aksh-at/rss-to-email">repo</a>).</p>
+<p>There&rsquo;s not a lot of user stories about Ions out there (despite <a href="https://news.ycombinator.com/item?id=17254222">intermittent HN hype</a>), so I&rsquo;m also sharing some of my takeaways here from building on this stack.</p>
+<p><img src="/img/rsstoemail.png" alt="rssto.email"></p>
+<h1 id="why-build-this">Why build this?</h1>
+<p>There&rsquo;s a lot of incredible blogs and writers on the internet, but at least for me, it&rsquo;s far easier to keep up with the ones that have email subscriptions, either through Substack or without. Most blogs have RSS/Atom feeds but none of the existing RSS readers I&rsquo;ve tried have given me a functional, ad-free, made-for-email-reading experience that I really want. This project is mostly a way to solve that problem for myself.</p>
+<p>In general, I&rsquo;m pretty excited by how the number of interesting voices and ideas on the internet is growing so rapidly, and I think there&rsquo;s a lot more that you could do with this:</p>
+<ul>
+<li>share your subscriptions</li>
+<li>better discovery</li>
+<li>recommendations</li>
+<li>a &ldquo;catch me up&rdquo; mode that drip feeds you the back catalog</li>
+</ul>
+<p>I don&rsquo;t have time at present to build those things, but if you&rsquo;re interested in contributing, I&rsquo;d love to talk to you!</p>
+<h1 id="why-clojure--datomic">Why Clojure &amp; Datomic?</h1>
+<p>Quick background: <a href="https://clojure.org/">Clojure</a> is a Lisp-like functional programming language that runs on the JVM; <a href="https://www.datomic.com/">Datomic</a> is a distributed database that&rsquo;s queryable using <a href="http://www.learndatalogtoday.org/">Datalog</a> and has &ldquo;<a href="https://docs.datomic.com/cloud/tutorial/history.html">time-travel</a>&rdquo; built in; <a href="https://docs.datomic.com/cloud/ions/ions-tutorial.html">Datomic Ions</a> is a Datomic offering that lets you deploy functions serverlessly as AWS Lambdas.</p>
+<p>I&rsquo;ve been interested in trying out Ions since I first heard about them—REPL-driven development is great, and the ability to write code and deploy it to production from my REPL without worrying about infra would be game-changing.</p>
+<p>Fun tech aside, a serverless back-end that uses a horizontally scalable database seemed like the perfect architecture for a side project—easy to keep running even if I&rsquo;m the only user, and trivial to scale up if not.</p>
+<h1 id="takeaways">Takeaways</h1>
+<h3 id="emacs-magic">Emacs magic</h3>
+<p>The emacs ecosystem has a ton of support for working with Lisps (not surprising since <a href="https://en.wikipedia.org/wiki/Emacs_Lisp">emacs itself is written in a Lisp</a>), and investing a small amount of time in setting up tooling actually goes a long way:</p>
+<ul>
+<li>
+<p><a href="https://github.com/luxbock/evil-cleverparens">Evil-cleverparens</a> makes parentheses/sexp manipulation a breeze. I&rsquo;m not going to go into all the shortcuts here, but here&rsquo;s a demo (regular vim <code>dd</code> deletes a couple lines now while <em>keeping parentheses balanced</em> and then <code>&gt;</code> moves the parentheses to enclose the adjacent expression):
+<img src="/img/clj-cleverparens.gif" alt="evil-cleverparens action"></p>
+</li>
+<li>
+<p><a href="https://github.com/clojure-lsp/clojure-lsp">Clojure LSP</a> lets you do fancy AST manipulation automatically, such as converting nested functions to use <a href="https://clojure.org/guides/threading_macros">threading macros</a> (which are one of the things about the language that make it so ergonomic):
+<img src="/img/clj-thread.gif" alt="Clojure LSP in action"></p>
+</li>
+<li>
+<p>Out-of-the-box linting doesn&rsquo;t do that much, and <em>aggressive mode</em> feels a lot better:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clj" data-lang="clj">(<span style="color:#a6e22e">add-hook</span> <span style="color:#e6db74">&#39;clojure-mode-hook</span> <span style="color:#f92672">#</span><span style="color:#e6db74">&#39;aggressive-indent-mode</span>)
+(<span style="color:#a6e22e">setq</span> clojure-indent-style <span style="color:#e6db74">&#39;align-arguments</span>)
+(<span style="color:#a6e22e">setq</span> clojure-align-forms-automatically t)</code></pre></div></p>
+</li>
+</ul>
+<h3 id="clojure-is-powerful">Clojure is powerful</h3>
+<p>Since Lisps <a href="http://www.paulgraham.com/avg.html">have no syntax</a>, you can create syntactic constructs on the fly that help you best express whatever you&rsquo;re writing. While not a crazy example, a cute illustration of this is in <a href="https://github.com/weavejester/hiccup">hiccup</a>, the library used to create html templates for emails. It lets you manipulate expressions that get compiled to html, and that ends up feeling basically like writing React:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clj" data-lang="clj">(<span style="color:#66d9ef">defn </span>format-notify-body [feed-url new-posts manage-link]
+  (<span style="color:#a6e22e">html</span> [<span style="color:#e6db74">:html</span>
+         [<span style="color:#e6db74">:body</span>
+          [<span style="color:#e6db74">:div</span> (seq  (<span style="color:#a6e22e">mapv</span> post-html new-posts))]
+          [<span style="color:#e6db74">:div</span>
+           [<span style="color:#e6db74">:a</span> {<span style="color:#e6db74">:href</span> manage-link <span style="color:#e6db74">:style</span> {<span style="color:#e6db74">:color</span> <span style="color:#e6db74">&#34;blue&#34;</span>}}
+            <span style="color:#e6db74">&#34;Unsubscribe&#34;</span>]]]]))</code></pre></div>
+<p>I had hoped to get my hands dirty with the language&rsquo;s concurrency model, but parallelizing the core polling loop was as easy as replacing <code>map</code> with <code>pmap</code>, so I guess that&rsquo;s nice!</p>
+<p>Given that it&rsquo;s a functional language, I was surprised at the amount of support for mutating references, especially useful for concurrent access to shared memory—e.g. you can build memoization using <a href="https://clojure.org/reference/atoms">atoms</a> and transactional updates using <a href="https://clojure.org/reference/refs">refs</a>. Atoms made it pretty easy to to build a mock function that records the args it was called with, that probably would have been quite difficult in a more &ldquo;pure&rdquo; functional language.</p>
+<p>Pretty much the only complaint I have with the language is that JVM start-up time really hurts. It takes ~10s to do anything (run tests, start up a REPL, deploy to Datomic). I hacked together a <a href="https://github.com/aksh-at/rss-to-email/blob/master/deploy.clj">deploy script</a> just so I can push and deploy without having to be in the loop. (Side note: the script uses <a href="https://github.com/babashka/babashka">babashka</a>, an interpreted Clojure runtime for scripting, which looks like an awesome project.)</p>
+<h3 id="datomic-ions-are-getting-there">Datomic Ions are getting there</h3>
+<p>As for Datomic Ions themselves, they do the stated job: deploying a function to an AWS Lambda is actually just 2 CLI commands. I was especially impressed that I spent no time on package or dependency bullshit, which is the norm if in Python land (which is where I&rsquo;ve been recently).</p>
+<p>However, it turns out when you actually want to build a production service, you need a lot more. I had to spend a bunch of time figuring out:</p>
+<ul>
+<li>Where to find the logs from my running service</li>
+<li>How to print my own logs (<code>println</code>&rsquo;s don&rsquo;t get persisted)</li>
+<li>How to proxy my lambdas in AWS API gateway (the docs bait you into thinking you can use Ion&rsquo;s HTTP Direct feature, but it turns out you can only deploy <em>one</em> ion that way, and then using that one function to manually dispatch a bunch of hundlers is just gross)</li>
+<li>The type signatures of some of Datomic&rsquo;s API—some of them are not documented anywhere, and Datomic is not open source</li>
+<li>How to back up my DB (turns out <a href="https://forum.datomic.com/t/cloud-backups-recovery/370">you can&rsquo;t yet</a>)</li>
+</ul>
+<p>Overall, it seems like the product is at the stage where it makes for a very compelling demo, but there&rsquo;s a bit more polish needed to make it truly magical, especially for first-time users. That said, I&rsquo;m pretty excited by where things are headed, and that more languages and ecosystems are trying to build serverless abstractions.</p>
+<p>The good news is that since I&rsquo;ve spent the fixed cost of figuring out some of this extra boilerplate, you can pretty much copy it wholesale from the <a href="https://github.com/aksh-at/rss-to-email">github repo</a> for your own project. For the <a href="https://en.wikipedia.org/wiki/Sunk_cost">same reason</a>, I think there&rsquo;s a good chance I&rsquo;ll be back to build more things on this stack.</p>
+
+    </article>
+
+    <nav class="site-nav">
+    
+  
+
+  
+  <a href="https://twitter.com/akshat_b">twitter</a>
+
+  
+  <a href="https://github.com/aksh-at">github</a>
+
+  
+  <a href="https://www.linkedin.com/in/akshat-bubna-188885103">linkedin</a>
+</nav>
+
+
+    <footer class="site-footer">
+    
+
+  
+
+  <!-- Build date: Tue, 28 Dec 2021 16:13:16 PST -->
+</footer>
+
+
+  </main>
+
+  
+<script src="https://aksh-at.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+</body>
+
+</html>

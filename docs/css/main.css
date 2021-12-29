@@ -56,10 +56,6 @@ a:hover {
     }
 }
 
-ol, ul {
-    list-style-type: none;
-}
-
 ol ol, ul ul, ul ol, ol ul {
     margin-bottom: 0;
 }
@@ -113,24 +109,24 @@ h1 {
     font-size: 1.875rem;
 }
 
-h2, h3, h4, h5, h6 {
+h2, h4, h5, h6 {
     margin: 0 0 .5rem;
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 1.625rem;
 }
 
 h3 {
-    font-size: 1.75rem;
+    font-size: 1.375rem;
 }
 
 h4 {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
 }
 
 h5 {
-    font-size: 1.25rem;
+    font-size: 0.875rem;
 }
 
 h6 {
@@ -276,4 +272,8 @@ hr:after {
     content: '';
     background-image: url('data:image/svg+xml;utf8,<svg width="9" height="9" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><rect x="0.75" y="0.5" width="8" height="8" rx="4" fill="%231CB0A8" /></svg>');
     right: -18px;
+}
+
+.language-clj {
+    background-color: transparent;
 }

@@ -6,7 +6,18 @@
     <description>Recent content on akshat bubna</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 18 Apr 2021 20:20:25 -0700</lastBuildDate><atom:link href="https://aksh-at.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Dec 2021 20:20:25 -0700</lastBuildDate><atom:link href="https://aksh-at.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>&#34;Substack for RSS feeds&#34;, built using Clojure and Datomic Ions</title>
+      <link>https://aksh-at.github.io/posts/rss-to-email/</link>
+      <pubDate>Mon, 27 Dec 2021 20:20:25 -0700</pubDate>
+      
+      <guid>https://aksh-at.github.io/posts/rss-to-email/</guid>
+      <description>Jessica and I spent holiday weekend building https://rssto.email, a feed subscription service written in Clojure and hosted entirely on Datomic Ions.
+The project started out as an Ion I wrote a few weeks ago, because none of the existing ways to subscribe to RSS feeds had the user experience I really wanted. The result was useful enough that we decided to productionize it and share the source (repo).
+There&amp;rsquo;s not a lot of user stories about Ions out there (despite intermittent HN hype), so I&amp;rsquo;m also sharing some of my takeaways here from building on this stack.</description>
+    </item>
+    
     <item>
       <title>about</title>
       <link>https://aksh-at.github.io/about/</link>
